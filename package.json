@@ -1,0 +1,21 @@
+{
+  "name": "testgrunt",
+  "version": "1.0.0",
+  "description": "this is a test grunt project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "grunt",
+    "automation",
+    "testing",
+    "testing",
+    "testing"
+  ],
+  "author": "Jake Rutledge",
+  "license": "MIT",
+  "dependencies": {
+    "grunt-contrib-watch": "^1.0.0"
+  }
+}
