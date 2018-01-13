@@ -3,6 +3,20 @@ module.exports = function(grunt) {
     pkg : grunt.file.readJSON('package.json'), // read all the packages inside readJSON
 
     //write the concat task
+    imagemin : {
+      jpg: {
+        options: {
+          progressive: true
+        },
+        files: [{
+            expand: true,
+            cwd: 'images/',
+            src: ['**/*.jpg'],
+            dest: 'miniimages/'
+        }]
+      }
+    },
+
     concat : {
       dist: {
         src: [
@@ -12,6 +26,15 @@ module.exports = function(grunt) {
         dest: 'prod/production.js'
       }
     },
+
+    jshint: {
+   files: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
+   options: {
+     globals: {
+       jQuery: true
+     }
+   }
+ },
 
     uglify : {
       build : {
@@ -23,7 +46,7 @@ module.exports = function(grunt) {
     watch : {
       scripts : {
         files : ['js/main.js', 'js/modules/*.js'],
-        tasks: ['concat','uglify'],
+        tasks: ['concat','uglify', 'jshint'],
         options: {
           spawn: false
         }
@@ -34,8 +57,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-imagemin');
 
-  grunt.registerTask('default', ['concat', 'uglify']);
+  grunt.registerTask('default', ['concat', 'uglify', 'jshint']);
   grunt.registerTask('watchFiles', ['watch']);
 
 };
